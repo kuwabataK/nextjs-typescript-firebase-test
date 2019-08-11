@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import { User } from '../interfaces'
 import { findData } from '../utils/sample-api'
 import firebase from '../utils/firebase'
-import { auth } from '../store/store'
+import { authStore } from '../store/store'
 import { observer } from 'mobx-react'
 
 type Props = {
@@ -27,7 +27,7 @@ class InitialPropsDetail extends React.Component<Props> {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      auth.setUser(user)
+      authStore.setUser(user)
     })
   }
 
@@ -42,7 +42,7 @@ class InitialPropsDetail extends React.Component<Props> {
 
   render() {
     const { item, errors } = this.props
-    const { user } = auth
+    const { user } = authStore
 
     if (errors) {
       return (

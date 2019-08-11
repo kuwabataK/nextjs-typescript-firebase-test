@@ -1,3 +1,3 @@
-import { Auth } from "./Auth";
+import { AuthStore } from "./AuthStore";
 
-export const auth = new Auth()
+export const authStore = new AuthStore()
