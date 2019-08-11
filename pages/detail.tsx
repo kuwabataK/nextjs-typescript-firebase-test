@@ -59,7 +59,7 @@ class InitialPropsDetail extends React.Component<Props> {
         title={`${item ? item.name : 'Detail'} | Next.js + TypeScript Example`}
       >
         <p className="App-intro">
-          UID: {user ? user.uid : ''}
+          Name: {user ? user.displayName : ''}
         </p>
 
         {user && user.uid === '' ?

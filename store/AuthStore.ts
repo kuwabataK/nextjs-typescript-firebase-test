@@ -10,4 +10,5 @@ export class AuthStore {
 
 class InitUser {
     uid = ''
+    displayName = ''
 }
