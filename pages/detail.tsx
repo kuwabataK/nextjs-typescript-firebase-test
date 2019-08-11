@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import { User } from '../interfaces'
 import { findData } from '../utils/sample-api'
 import firebase from '../utils/firebase'
-import { authStore, counterStore, aboutCounterStore } from '../store/store'
+import { authStore, counterStore, aboutCounterStore, childStore } from '../store/store'
 import { observer } from 'mobx-react'
 
 type Props = {
@@ -40,7 +40,9 @@ class InitialPropsDetail extends React.Component<Props> {
     firebase.auth().signOut()
   }
 
-  incrementCnt = () => counterStore.incrementCnt()
+  // chiledStore経由でcounterStoreのcounterを増加
+  incrementCnt = () => childStore.increment()
+  // counterStore経由でcounterを増加
   decrement = () => counterStore.decrement()
 
   aboutIncrementCnt = () => aboutCounterStore.incrementCnt()
