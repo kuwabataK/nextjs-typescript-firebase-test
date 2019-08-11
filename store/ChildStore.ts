@@ -1,5 +1,6 @@
 import { observable, action, computed } from 'mobx'
 import { authStore, counterStore } from './store'
+import { CounterStore } from './CounterStore';
 
 export class ChildStore {
     @observable hoge = ''
@@ -24,4 +25,8 @@ export class ChildStore {
     increment(){
         counterStore.incrementCnt()
     }
+
+    // VuexのModuleのように、下の階層に独自のストアを持ちたければ、
+    // このように新たなStoreをnewすれば良い
+    counterStore = new CounterStore()
 }
