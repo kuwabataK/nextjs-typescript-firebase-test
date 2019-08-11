@@ -27,7 +27,7 @@ class InitialPropsDetail extends React.Component<Props> {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      auth.user = user
+      auth.setUser(user)
     })
   }
 
