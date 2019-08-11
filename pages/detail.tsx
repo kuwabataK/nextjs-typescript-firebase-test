@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import { User } from '../interfaces'
 import { findData } from '../utils/sample-api'
 import firebase from '../utils/firebase'
-import { authStore, counterStore } from '../store/store'
+import { authStore, counterStore, aboutCounterStore } from '../store/store'
 import { observer } from 'mobx-react'
 
 type Props = {
@@ -43,6 +43,9 @@ class InitialPropsDetail extends React.Component<Props> {
   incrementCnt = () => counterStore.incrementCnt()
   decrement = () => counterStore.decrement()
 
+  aboutIncrementCnt = () => aboutCounterStore.incrementCnt()
+  aboutDecrement = () => aboutCounterStore.decrement()
+
   render() {
     const { item, errors } = this.props
     const { user } = authStore
@@ -74,10 +77,15 @@ class InitialPropsDetail extends React.Component<Props> {
               <button onClick={this.login}>Google Login</button>
             )}
         <p>
-          {counter}
+          home画面のcounter: {counter}
         </p>
         <button onClick={this.incrementCnt}>+</button>
         <button onClick={this.decrement}>-</button>
+        <p>
+          about画面のcounter: {aboutCounterStore.counter}
+        </p>
+        <button onClick={this.aboutIncrementCnt}>+</button>
+        <button onClick={this.aboutDecrement}>-</button>
       </Layout>
     )
   }
