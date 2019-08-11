@@ -4,27 +4,16 @@ import Layout from '../components/Layout'
 import { User } from '../interfaces'
 import { findData } from '../utils/sample-api'
 import firebase from '../utils/firebase'
+import { auth } from '../store/store'
+import { observer } from 'mobx-react'
 
 type Props = {
   item?: User
   errors?: string
 }
 
-type State = {
-  user: firebase.User | null | InitUser
-}
-
-type InitUser = {
-  uid: ''
-}
-
+@observer
 class InitialPropsDetail extends React.Component<Props> {
-
-  state: State = {
-    user: {
-      uid: ''
-    }
-  }
 
   static getInitialProps = async ({ query }: NextPageContext) => {
     try {
@@ -38,12 +27,8 @@ class InitialPropsDetail extends React.Component<Props> {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ user })
+      auth.user = user
     })
-  }
-
-  componentWillUnmount() {
-    this.setState({ user: null })
   }
 
   login() {
@@ -57,7 +42,7 @@ class InitialPropsDetail extends React.Component<Props> {
 
   render() {
     const { item, errors } = this.props
-    const { user } = this.state
+    const { user } = auth
 
     if (errors) {
       return (
