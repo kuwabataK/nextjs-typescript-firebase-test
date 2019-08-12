@@ -56,6 +56,9 @@ export class Fuga {
     name: string = ''
     isActive = false
     address = new Address()
+    someMethod(){
+        console.log('aaaaa')
+    }
 }
 
 class Address {
