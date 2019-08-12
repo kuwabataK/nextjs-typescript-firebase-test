@@ -1,6 +1,9 @@
 import { AuthStore } from "./AuthStore";
 import { CounterStore } from "./CounterStore";
 import { ChildStore } from "./ChildStore";
+import { configure } from "mobx";
+
+configure({ enforceActions: 'always' });
 
 export const authStore = new AuthStore()
 export const counterStore = new CounterStore()
