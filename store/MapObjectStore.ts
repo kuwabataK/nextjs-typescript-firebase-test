@@ -6,12 +6,24 @@ import { arrayToMap } from '../utils/util';
 
 export class MapObjectStore {
 
-    @observable fugas: { [key: string]: Fuga } = {}
+    @observable.shallow fugas: { [key: string]: Fuga } = {}
 
     @action
     addFuga(a: Fuga) {
-        // pushはなぜかViewを更新してくれる
+        // fugasの参照を更新していないが、なぜか変更検知してくれる
         this.fugas[a.id] = a
+    }
+
+    @action
+    deleteFuga(id: string){
+        // fugasの参照を更新していないが、なぜか変更検知してくれる
+        delete this.fugas[id]
+    }
+
+    @action
+    changeFuga(id:string,newFuga: Fuga){
+        // fugasの参照を更新していないが、なぜか変更検知してくれる
+        this.fugas[id] = newFuga
     }
 
     @action
@@ -22,7 +34,10 @@ export class MapObjectStore {
 
     @action
     changeFirstFugaName(id: string) {
+        // これだけでは変更検知してくれない
         this.fugas[id].name = '変わった名前だよ!!'
+
+        // これで変更検知が働いてくれる
         this.fugas = { ...this.fugas }
     }
 

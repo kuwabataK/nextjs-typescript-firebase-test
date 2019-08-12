@@ -19,6 +19,17 @@ class Fuga2Page extends React.Component {
         mapObjectStore.addFuga(newFuga)
     }
 
+    deleteFuga = (id: string) => {
+        mapObjectStore.deleteFuga(id)
+    }
+
+    changeFuga = (id: string) =>{
+        const newFuga = new Fuga()
+        newFuga.name = this.state.name
+        newFuga.isActive = false
+        mapObjectStore.changeFuga(id,newFuga)
+    }
+
     addDisableFuga = () => {
         const newFuga = new Fuga()
         newFuga.name = this.state.name
@@ -55,6 +66,8 @@ class Fuga2Page extends React.Component {
                         </p>
                         <button onClick={() => this.changeState(f.id)}>国を変える</button>
                         <button onClick={() => this.changeName(f.id)}>名前を変える</button>
+                        <button onClick={() => this.deleteFuga(f.id)}>削除する</button>
+                        <button onClick={() => this.changeFuga(f.id)}>変更する</button>
 
                     </div>
                 ))}
