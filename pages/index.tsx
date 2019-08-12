@@ -22,6 +22,11 @@ const IndexPage: NextPage = () => {
           <a>fuga</a>
         </Link>
       </p>
+      <p>
+        <Link href="/fuga2">
+          <a>fuga2</a>
+        </Link>
+      </p>
     </Layout>
   )
 }
