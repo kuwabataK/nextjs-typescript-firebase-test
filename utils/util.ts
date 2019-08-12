@@ -6,7 +6,7 @@
  * @param {string} key 変換後の連想配列のキーに指定する値のキーを指定する。例 'id' / 'innerItem.name'
  */
 export function arrayToMap<T>(array: T[], key: string = '') {
-    const obj: { [key: string]: T } = {}
+    const obj: { [key: string]: T } = Object.create(null)
 
     const re = /[\.\[\]]/
     const keys = key.split(re).filter(str => str.length !== 0)
