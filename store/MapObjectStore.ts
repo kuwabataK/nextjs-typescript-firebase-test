@@ -6,7 +6,7 @@ import { arrayToMap } from '../utils/util';
 
 export class MapObjectStore {
 
-    @observable.shallow fugas: { [key: string]: Fuga } = {}
+    @observable.shallow fugas: { [key: string]: Fuga } = Object.create(null)
 
     @action
     addFuga(a: Fuga) {
@@ -15,13 +15,13 @@ export class MapObjectStore {
     }
 
     @action
-    deleteFuga(id: string){
+    deleteFuga(id: string) {
         // fugasの参照を更新していないが、なぜか変更検知してくれる
         delete this.fugas[id]
     }
 
     @action
-    changeFuga(id:string,newFuga: Fuga){
+    changeFuga(id: string, newFuga: Fuga) {
         // fugasの参照を更新していないが、なぜか変更検知してくれる
         this.fugas[id] = newFuga
     }
@@ -56,7 +56,7 @@ export class Fuga {
     name: string = ''
     isActive = false
     address = new Address()
-    someMethod(){
+    someMethod() {
         console.log('aaaaa')
     }
 }
