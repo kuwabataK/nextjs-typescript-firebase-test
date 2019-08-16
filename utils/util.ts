@@ -26,12 +26,18 @@ export function arrayToMap<T>(array: T[], key: string = '') {
     return obj
 }
 
+/**
+ * １０秒間解決しないPromiseを提供するsetTimeout
+ */
 export function infiniteTimeOut() {
     return new Promise(res => {
         setTimeout(res, 10000)
     })
 }
 
+/**
+ * タイムアウト時にlockを解除するasyncLockクラス
+ */
 export class PromiseLock {
 
     asyncLock: AsyncLock
