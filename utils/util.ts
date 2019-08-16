@@ -1,3 +1,4 @@
+import AsyncLock from 'async-lock'
 
 /**
  * 配列を指定したキーのMap Objectに変換する
@@ -10,7 +11,7 @@ export function arrayToMap<T>(array: T[], key: string = '') {
 
     const re = /[\.\[\]]/
     const keys = key.split(re).filter(str => str.length !== 0)
-    
+
     array.forEach((t, i) => {
         if (typeof t === 'string' || typeof t === 'number') {
             obj[t] = t
@@ -23,4 +24,59 @@ export function arrayToMap<T>(array: T[], key: string = '') {
         obj[_key] = t
     })
     return obj
+}
+
+export function infiniteTimeOut() {
+    return new Promise(res => {
+        setTimeout(res, 10000)
+    })
+}
+
+export class PromiseLock {
+
+    asyncLock: AsyncLock
+    constructor(option?: AsyncLockOptions) {
+        this.asyncLock = new AsyncLock(option)
+    }
+
+    acquire<T>(func: () => T, options: AquireOptions = {}) {
+
+        let { resolveTimeout, key } = options
+        if (!key) {
+            key = '__DEFAULT_KEY__'
+        }
+
+        return this.asyncLock.acquire(key, () => {
+            return new Promise(async resolve => {
+                let isResolved = false
+                if (resolveTimeout) {
+                    setTimeout(() => {
+                        if (!isResolved) {
+                            console.error(`${resolveTimeout} ms passed. over resolveTimeout. unlock this`)
+                            resolve()
+                        }
+                    }, resolveTimeout)
+                }
+                const response = await func()
+                resolve(response)
+                isResolved = true
+            })
+        })
+    }
+
+    isBusy(key = '__DEFAULT_KEY__') {
+        return this.asyncLock.isBusy(key)
+    }
+}
+
+interface AsyncLockOptions {
+    timeout?: number;
+    maxPending?: number;
+    domainReentrant?: boolean;
+    Promise?: any;
+}
+
+interface AquireOptions {
+    resolveTimeout?: number
+    key?: string | string[]
 }

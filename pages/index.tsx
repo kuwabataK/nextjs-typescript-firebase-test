@@ -27,6 +27,11 @@ const IndexPage: NextPage = () => {
           <a>fuga2</a>
         </Link>
       </p>
+      <p>
+        <Link href="/timeout">
+          <a>timeout</a>
+        </Link>
+      </p>
     </Layout>
   )
 }
