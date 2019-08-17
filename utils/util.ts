@@ -1,5 +1,4 @@
 import AsyncLock from 'async-lock'
-import { SSL_OP_EPHEMERAL_RSA } from 'constants';
 
 /**
  * 配列を指定したキーのMap Objectに変換する
