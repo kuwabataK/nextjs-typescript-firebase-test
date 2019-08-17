@@ -4,15 +4,15 @@ import { infiniteTimeOut, PromiseLock } from "../utils/util";
 
 const TimeoutPage: React.FunctionComponent = () => {
 
-    const asyncLock = new PromiseLock({ timeout: 1000 })
+    const promiseLock = new PromiseLock({ timeout: 1000 })
 
     const handler = () => {
-        if (asyncLock.isBusy()) {
+        if (promiseLock.isBusy()) {
             console.log('handler is busy. skip exec function')
             return
         }
 
-        asyncLock.acquire(async () => {
+        promiseLock.acquire(async () => {
             console.log('start')
             await infiniteTimeOut()
             console.log('finish')
