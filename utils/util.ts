@@ -58,7 +58,7 @@ export class PromiseLock {
                 if (resolveTimeout) {
                     setTimeout(() => {
                         if (!isResolved) {
-                            console.error(`${resolveTimeout} ms passed. over resolveTimeout. unlock this`)
+                            console.error(`${resolveTimeout} ms passed. over resolveTimeout. unlock promiseLock`)
                             resolve()
                         }
                     }, resolveTimeout)

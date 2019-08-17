@@ -2,9 +2,9 @@ import Layout from "../components/Layout";
 import Link from "next/link";
 import { infiniteTimeOut, PromiseLock } from "../utils/util";
 
-const TimeoutPage: React.FunctionComponent = () => {
+const promiseLock = new PromiseLock()
 
-    const promiseLock = new PromiseLock({ timeout: 1000 })
+const TimeoutPage: React.FunctionComponent = () => {
 
     const handler = () => {
         if (promiseLock.isBusy()) {
