@@ -1,4 +1,5 @@
 import AsyncLock from 'async-lock'
+import { SSL_OP_EPHEMERAL_RSA } from 'constants';
 
 /**
  * 配列を指定したキーのMap Objectに変換する
@@ -32,6 +33,17 @@ export function arrayToMap<T>(array: T[], key: string = '') {
 export function infiniteTimeOut() {
     return new Promise(res => {
         setTimeout(res, 10000)
+    })
+}
+
+/**
+ * 設定した時間待機する
+ * 
+ * @param msec 待機時間(ms) 
+ */
+export function sleep(msec: number) {
+    return new Promise(res => {
+        setTimeout(res, msec)
     })
 }
 
