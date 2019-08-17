@@ -32,6 +32,11 @@ const IndexPage: NextPage = () => {
           <a>timeout</a>
         </Link>
       </p>
+      <p>
+        <Link href="/counter">
+          <a>カウンターアプリ</a>
+        </Link>
+      </p>
     </Layout>
   )
 }

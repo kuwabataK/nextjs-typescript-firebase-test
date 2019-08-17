@@ -3,6 +3,7 @@ import { CounterStore } from "./CounterStore";
 import { ChildStore } from "./ChildStore";
 import { configure } from "mobx";
 import { MapObjectStore } from "./MapObjectStore";
+import { CounterPageStore } from "./counter/CounterPageStore";
 
 configure({ enforceActions: 'always' });
 
@@ -15,3 +16,5 @@ export const mapObjectStore = new MapObjectStore()
 
 // 自身を参照するようなStoreも追加できる
 export const childStore = new ChildStore()
+
+export const counterPage = new CounterPageStore()
