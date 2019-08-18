@@ -23,6 +23,8 @@ type Props = {
 
 const Counter: React.FunctionComponent = observer(() => {
 
+    console.log('カウンターページが再描画されたよ')
+
     // const [counter, setCount] = useState(0)
 
     /**
