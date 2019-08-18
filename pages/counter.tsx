@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import Link from "next/link";
 // import { useState } from "react";
-import { counterPage } from '../store/store'
+import store from '../store/store'
 import { observer } from "mobx-react";
 import { useEffect, useMemo, useState } from "react";
 import { usePrevious } from "../utils/reacthooks";
@@ -76,14 +76,14 @@ const Counter: React.FunctionComponent = observer(() => {
         // ストアのアクションを呼ぶ
         // Mobxのストアはただのクラスなので単純に関数を呼び出すだけ
         // Vuexなどのように間にラッパーが挟まっていないので、型推論も効く
-        counterPage.counterStore.incrementCnt()
+        store.counterStore.incrementCnt()
     }
 
     const decrementStore = () => {
         // ストアのアクションを呼ぶ
         // Mobxのストアはただのクラスなので単純に関数を呼び出すだけ
         // Vuexなどのように間にラッパーが挟まっていないので、型推論も効く
-        counterPage.counterStore.decrement()
+        store.counterStore.decrement()
     }
 
     const increment = () => {
@@ -102,7 +102,7 @@ const Counter: React.FunctionComponent = observer(() => {
         <p>Stateのカウンターを100倍した値: {cnt100}</p>
         <button onClick={increment}>+</button>
         <button onClick={decrement} >-</button>
-        <p>Storeのカウンター: {counterPage.counterStore.counter}</p>
+        <p>Storeのカウンター: {store.counterStore.counter}</p>
         <p />
         <button onClick={incrementStore} >+</button>
         <button onClick={decrementStore} >-</button>

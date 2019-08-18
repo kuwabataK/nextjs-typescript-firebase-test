@@ -1,5 +1,5 @@
 import { observable, action, computed } from 'mobx'
-import { authStore, counterStore } from './store'
+import store from './store'
 import { CounterStore } from './CounterStore';
 import uuid from 'uuid/v4'
 import _ from 'lodash'
@@ -15,18 +15,18 @@ export class ChildStore {
     // 別Storeの状態を参照することもできる
     @computed
     get user() {
-        return authStore.user
+        return store.authStore.user
     }
 
     // 別ストアの状態を参照することもできる
     @computed
     get counter() {
-        return counterStore.counter
+        return store.counterStore.counter
     }
 
     // 別ストアの状態を変更することもできる
     increment() {
-        counterStore.incrementCnt()
+        store.counterStore.incrementCnt()
     }
 
     @observable fuga: Map<string, Fuga> = new Map()

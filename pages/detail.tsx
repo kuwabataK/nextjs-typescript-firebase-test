@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import { User } from '../interfaces'
 import { findData } from '../utils/sample-api'
 import firebase from '../utils/firebase'
-import { authStore, counterStore, aboutCounterStore, childStore } from '../store/store'
+import store from '../store/store'
 import { observer } from 'mobx-react'
 
 type Props = {
@@ -27,7 +27,7 @@ class InitialPropsDetail extends React.Component<Props> {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      authStore.setUser(user)
+      store.authStore.setUser(user)
     })
   }
 
@@ -41,17 +41,17 @@ class InitialPropsDetail extends React.Component<Props> {
   }
 
   // chiledStore経由でcounterStoreのcounterを増加
-  incrementCnt = () => childStore.increment()
+  incrementCnt = () => store.childStore.increment()
   // counterStore経由でcounterを増加
-  decrement = () => counterStore.decrement()
+  decrement = () => store.counterStore.decrement()
 
-  aboutIncrementCnt = () => aboutCounterStore.incrementCnt()
-  aboutDecrement = () => aboutCounterStore.decrement()
+  aboutIncrementCnt = () => store.aboutCounterStore.incrementCnt()
+  aboutDecrement = () => store.aboutCounterStore.decrement()
 
   render() {
     const { item, errors } = this.props
-    const { user } = authStore
-    const { counter } = counterStore
+    const { user } = store.authStore
+    const { counter } = store.counterStore
 
     if (errors) {
       return (
@@ -84,7 +84,7 @@ class InitialPropsDetail extends React.Component<Props> {
         <button onClick={this.incrementCnt}>+</button>
         <button onClick={this.decrement}>-</button>
         <p>
-          about画面のcounter: {aboutCounterStore.counter}
+          about画面のcounter: {store.aboutCounterStore.counter}
         </p>
         <button onClick={this.aboutIncrementCnt}>+</button>
         <button onClick={this.aboutDecrement}>-</button>

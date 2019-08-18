@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import { childStore } from '../store/store'
+import store from '../store/store'
 import { observer } from 'mobx-react'
 import { Fuga } from '../store/ChildStore';
 import { useState, useEffect } from 'react';
@@ -7,24 +7,24 @@ import { useState, useEffect } from 'react';
 
 const FugaPage: React.FunctionComponent = observer(() => {
 
-    const [name, setName] = useState()
+    const [name, setName] = useState('')
 
     useEffect(() => {
         console.log('fugaが変更されました')
-    }, [childStore.fuga])
+    }, [store.childStore.fuga])
 
     const addFuga = () => {
         const newFuga = new Fuga()
         newFuga.name = name
         newFuga.isActive = true
-        childStore.addFuga(newFuga)
+        store.childStore.addFuga(newFuga)
     }
 
     const addDisableFuga = () => {
         const newFuga = new Fuga()
         newFuga.name = name
         newFuga.isActive = false
-        childStore.addFuga(newFuga)
+        store.childStore.addFuga(newFuga)
     }
 
     const onChangeInput = (e: any) => {
@@ -32,21 +32,21 @@ const FugaPage: React.FunctionComponent = observer(() => {
     }
 
     const filtered = () => {
-        childStore.filteredFuga()
+        store.childStore.filteredFuga()
     }
 
     const changeName = () => {
-        childStore.changeFirstFugaName()
+        store.childStore.changeFirstFugaName()
     }
 
     const changeState = (id: string) => {
-        childStore.changeState(id)
+        store.childStore.changeState(id)
     }
 
 
     return (
         <Layout>
-            {[...childStore.fuga.values()].map(f => (
+            {[...store.childStore.fuga.values()].map(f => (
                 <div key={f.id}>
                     <p>
                         {f.name}

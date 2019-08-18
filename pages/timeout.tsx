@@ -4,7 +4,7 @@ import { infiniteTimeOut, PromiseLock } from "../utils/util";
 
 const promiseLock = new PromiseLock()
 
-const TimeoutPage: React.FunctionComponent = () => {
+const TimeoutPage: React.FC = () => {
 
     const handler = () => {
         if (promiseLock.isBusy()) {

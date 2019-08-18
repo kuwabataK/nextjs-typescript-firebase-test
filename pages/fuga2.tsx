@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
-import { mapObjectStore } from '../store/store'
+import store from '../store/store'
 import { observer } from 'mobx-react'
 import { Fuga } from '../store/MapObjectStore';
 
@@ -16,25 +16,25 @@ class Fuga2Page extends React.Component {
         const newFuga = new Fuga()
         newFuga.name = this.state.name
         newFuga.isActive = true
-        mapObjectStore.addFuga(newFuga)
+        store.mapObjectStore.addFuga(newFuga)
     }
 
     deleteFuga = (id: string) => {
-        mapObjectStore.deleteFuga(id)
+        store.mapObjectStore.deleteFuga(id)
     }
 
     changeFuga = (id: string) =>{
         const newFuga = new Fuga()
         newFuga.name = this.state.name
         newFuga.isActive = false
-        mapObjectStore.changeFuga(id,newFuga)
+        store.mapObjectStore.changeFuga(id,newFuga)
     }
 
     addDisableFuga = () => {
         const newFuga = new Fuga()
         newFuga.name = this.state.name
         newFuga.isActive = false
-        mapObjectStore.addFuga(newFuga)
+        store.mapObjectStore.addFuga(newFuga)
     }
 
     onChangeInput = (e: any) => {
@@ -42,21 +42,21 @@ class Fuga2Page extends React.Component {
     }
 
     filtered = () => {
-        mapObjectStore.filteredFuga()
+        store.mapObjectStore.filteredFuga()
     }
 
     changeName = (id: string) => {
-        mapObjectStore.changeFirstFugaName(id)
+        store.mapObjectStore.changeFirstFugaName(id)
     }
 
     changeState = (id: string) => {
-        mapObjectStore.changeState(id)
+        store.mapObjectStore.changeState(id)
     }
 
     render() {
         return (
             <Layout>
-                {Object.values(mapObjectStore.fugas).map(f => (
+                {Object.values(store.mapObjectStore.fugas).map(f => (
                     <div key={f.id}>
                         <p>
                             {f.name}
