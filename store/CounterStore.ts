@@ -1,19 +1,24 @@
-import { observable, action } from 'mobx'
+import { action, computed, observable } from 'mobx'
 
 export class CounterStore {
-    @observable counter: number = 10
+    @observable private _counter: number = 10
+
+    @computed
+    get counter (){
+        return this._counter
+    }
 
     @action
     incrementCnt() {
-        this.counter = this.counter + 1
+        this._counter = this.counter + 1
     }
     
     @action
     decrement() {
         if (this.counter <= 0) {
-            this.counter = 0
+            this._counter = 0
             return
         }
-        this.counter = this.counter - 1
+        this._counter = this.counter - 1
     }
 }

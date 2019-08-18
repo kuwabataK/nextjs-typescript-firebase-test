@@ -3,6 +3,7 @@ import store from './store'
 import { CounterStore } from './CounterStore';
 import uuid from 'uuid/v4'
 import _ from 'lodash'
+import { sleep } from '../utils/util';
 
 export class ChildStore {
     @observable hoge = ''
@@ -31,8 +32,13 @@ export class ChildStore {
 
     @observable fuga: Map<string, Fuga> = new Map()
 
+    async addFuga(a: Fuga) {
+        await sleep(1000)
+        this._addFuga(a)
+    }
+
     @action
-    addFuga(a: Fuga) {
+    private _addFuga(a: Fuga) {
         // pushはなぜかViewを更新してくれる
         this.fuga.set(a.id, a)
         this.fuga = _.clone(this.fuga)
