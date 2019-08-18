@@ -6,19 +6,28 @@ import { observer } from "mobx-react";
 import { useEffect, useMemo, useState } from "react";
 import { usePrevious } from "../utils/reacthooks";
 
-const GoHome = () => (
+
+/**
+ * 
+ * @param props Vueで言うところのprops。React.FCでは関数の引数として定義する
+ */
+const GoHome: React.FunctionComponent<Props> = (props) => (
     <Link href="/">
-        <a>Go home</a>
+        <a>{props.text}</a>
     </Link>
 )
+
+type Props = {
+    text?: string
+}
 
 const Counter: React.FunctionComponent = observer(() => {
 
     // const [counter, setCount] = useState(0)
 
     /**
-     * useStateを使うことで状態を格納する変数と、その変数を更新する
-     * setState関数をタプルとして返す
+     * useStateを使うことで状態を格納する変数と、
+     * その変数を更新するsetState関数をタプルとして返す
      * Vueで言うところの data (state)
      */
     const [counter, setCnt] = useState(0)
@@ -27,7 +36,7 @@ const Counter: React.FunctionComponent = observer(() => {
      * Vueで言うところの computed
      * 
      * 第２引数の配列に指定した値が更新されたときのみ再計算される
-     * Vueと違って、依存する値を自分で定義しなくてはいけないが、その分計算コストが低い上、タイミングをカスタマイズ可能
+     * Vueと違って、依存する値を自分で定義しなくてはいけない
      */
     const cnt100 = useMemo(() => {
         console.log('memoが再計算されたよ')
@@ -99,7 +108,7 @@ const Counter: React.FunctionComponent = observer(() => {
         <button onClick={decrementStore} >-</button>
 
         <p>
-            <GoHome />
+            <GoHome text='GO HOME' />
         </p>
     </Layout>
 })
