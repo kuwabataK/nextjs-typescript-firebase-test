@@ -42,6 +42,11 @@ const IndexPage: NextPage = () => {
           <a>現在時刻</a>
         </Link>
       </p>
+      <p>
+        <Link href="/test">
+          <a>テスト</a>
+        </Link>
+      </p>
     </Layout>
   )
 }
