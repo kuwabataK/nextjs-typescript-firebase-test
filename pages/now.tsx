@@ -31,7 +31,9 @@ const Nows = observer((props: Props) => {
 })
 
 
-
+/**
+ * 時計コンポーネント
+ */
 const Now = observer(() => {
 
     // const now = store.clocStore.now
