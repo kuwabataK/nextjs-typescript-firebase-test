@@ -10,6 +10,9 @@ type Props = {
     cloc: ClocStore
 }
 
+/**
+ * propsでstoreを渡すサンプル
+ */
 const Nows = observer((props: Props) => {
 
     const now = props.cloc.now
