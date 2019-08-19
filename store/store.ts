@@ -4,6 +4,7 @@ import { ChildStore } from "./ChildStore";
 import { configure } from "mobx";
 import { MapObjectStore } from "./MapObjectStore";
 import { CounterPageStore } from "./counter/CounterPageStore";
+import { ClocStore } from "./ClocStore";
 
 configure({ enforceActions: 'always' });
 
@@ -18,5 +19,6 @@ export default {
     // 自身を参照するようなStoreも追加できる
     childStore: new ChildStore(),
 
-    counterPage: new CounterPageStore()
+    counterPage: new CounterPageStore(),
+    clocStore: new ClocStore()
 }

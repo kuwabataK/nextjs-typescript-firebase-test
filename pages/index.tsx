@@ -37,6 +37,11 @@ const IndexPage: NextPage = () => {
           <a>カウンターアプリ</a>
         </Link>
       </p>
+      <p>
+        <Link href="/now">
+          <a>現在時刻</a>
+        </Link>
+      </p>
     </Layout>
   )
 }
