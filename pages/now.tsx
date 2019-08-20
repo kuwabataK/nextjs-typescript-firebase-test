@@ -26,7 +26,28 @@ const Nows = observer((props: Props) => {
 
     return <div>
         <p>{now}</p>
-        <p>{props.cloc.now}</p>
+    </div>
+})
+
+const Timer = observer(() => {
+
+    const resetTimer = () => {
+        store.clocStore.resetTimer()
+    }
+
+    const startTimer = () => {
+        store.clocStore.startTimer()
+    }
+
+    const stopTimer = () =>{
+        store.clocStore.stopTimer()
+    }
+
+    return <div>
+        <p>{store.clocStore.elapsedTime}</p>
+        <button onClick={startTimer}>start</button>
+        <button onClick={stopTimer}>stop</button>
+        <button onClick={resetTimer}>reset</button>
     </div>
 })
 
@@ -49,6 +70,7 @@ const Now = observer(() => {
         <h1>現在時刻</h1>
         {/* <p>{store.clocStore.now}</p> */}
         <Nows cloc={store.clocStore} />
+        <Timer></Timer>
         <p>
             <Link href="/">
                 <a>Go home</a>

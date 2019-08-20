@@ -20,5 +20,5 @@ export default {
     childStore: new ChildStore(),
 
     counterPage: new CounterPageStore(),
-    clocStore: new ClocStore()
+    clocStore: new ClocStore(),
 }
