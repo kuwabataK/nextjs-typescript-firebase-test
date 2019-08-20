@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 
 type User = {
-    userId: string
-    mail: string
+    userId?: string | null
+    mail?: string | null
 }
 
 const getUser = () => {
     return new Promise((res: (user: User) => void) => {
         setTimeout(() => {
             const user = {
-                userId: 'testId',
+                userId: null,
                 mail: 'test@mail.com'
             }
             res(user)
@@ -33,8 +33,8 @@ const createForm = (
 
 const getUserParam = (setUserId: Function, setMail: Function) => {
     getUser().then(user => {
-        setUserId(user.userId)
-        setMail(user.mail)
+        setUserId(user.userId || '')
+        setMail(user.mail || '')
     })
 }
 
